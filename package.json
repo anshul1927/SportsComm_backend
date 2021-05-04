@@ -20,13 +20,15 @@
     "bcrypt": "^5.0.1",
     "connect-mongo": "^4.4.1",
     "dotenv": "^8.2.0",
+    "express": "^4.17.1",
     "graphql": "^15.5.0",
     "graphql-tool": "^1.0.0",
     "graphql-tools": "^4.0.8",
     "jsonwebtoken": "^8.5.1",
     "milsymbol": "^2.0.0",
     "mongodb": "^3.6.6",
-    "mongoose": "^5.12.5"
+    "mongoose": "^5.12.5",
+    "morgan": "^1.10.0"
   },
   "devDependencies": {
     "@babel/core": "^7.13.16",

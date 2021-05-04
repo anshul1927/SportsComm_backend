@@ -1,4 +1,7 @@
-import {ApolloServer} from "apollo-server";
+import {ApolloServer} from "apollo-server-express";
+import express from "express";
+import logger from "morgan";
+
 //import { typeDefs, resolvers } from "./schema.js";
 const {typeDefs,resolvers} = require('./schema')
 // const resolvers = require('./resolver')
@@ -18,6 +21,7 @@ mongoose.connect('mongodb+srv://anshul:anshul@cluster0.qn1xp.mongodb.net/sportsC
 });
 mongoose.set('useCreateIndex', true);
 
+const PORT = process.env.PORT;
 
 const server = new ApolloServer({
     typeDefs,
@@ -31,7 +35,18 @@ const server = new ApolloServer({
     
 });
 
-server.listen().then(() => console.log("server is running"));
+const app = express();
+app.use(logger("dev"))
+
+server.applyMiddleware({
+    app
+})
+
+
+app
+    .listen({port: PORT}, () => {
+        console.log(`🚀server is running on http://localhost:${PORT}✅`)
+    })
 
 
 

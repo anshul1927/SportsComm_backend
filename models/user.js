@@ -21,6 +21,36 @@ const UserSchema = new Schema({
         type: String,
         required: true
     },
+    rollno: {
+        type: String,
+        required: true,
+        unique: true
+    },
+    mobileno: {
+        type: String,
+        required: true
+    },
+    gender: {
+        type: String,
+        required: true
+    },
+    dob: {
+        type: String,
+        required: true
+    },
+    batch: {
+        type: String,
+        required: true
+    },
+    year: {
+        type: String,
+        required: true
+    },
+    idType: {
+        type: String,
+        required: true
+    },
+
     password: {
         type: String,
         required: true

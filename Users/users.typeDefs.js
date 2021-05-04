@@ -7,6 +7,13 @@ export default gql`
         lastname: String
         username: String!
         email: String!
+        rollno: String!
+        mobileno: String!
+        gender: String!
+        dob: String!
+        batch: String!
+        year: String!
+        idType: String!
         createdAt: String!
         updatedAt: String!
     }

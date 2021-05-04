@@ -6,7 +6,13 @@ import jwt  from "jsonwebtoken";
 
 export default {
     Mutation: {
-        createAccount: async (_,{firstname, lastname, username, email, password}) => {
+        createAccount: async (_,{firstname, lastname, username, email,rollno,
+            mobileno,
+            gender,
+            dob,
+            batch,
+            year,
+            idType, password}) => {
             
         try{
             const existingUser = await user.findOne(
@@ -16,11 +22,9 @@ export default {
                         {email}
                     ],
                 }).limit(1);
-                    console.log(existingUser);
                     if(existingUser){
                         throw new Error("This username/email is already taken.")
                     }
-                        console.log(existingUser);
         
                         const uglyPassword = await bcrypt.hash(password, 10);
                         const userObj = new user({
@@ -28,17 +32,28 @@ export default {
                             lastname,
                             username,
                             email,
+                            rollno,
+                            mobileno,
+                            gender,
+                            dob,
+                            batch,
+                            year,
+                            idType,
                             password: uglyPassword
                         })
                         try{
                             const result = await userObj.save()
-                            return { ...result._doc }
+                            console.log(result);
+                            return { ok: true }
                         }catch(err){
                         console.error(err)
                     }
         }catch(e){
-            return e;
-        }           
+            return {
+                ok: false,
+                error: "Cant create account.",
+            }
+        }
                 
         },
     },
